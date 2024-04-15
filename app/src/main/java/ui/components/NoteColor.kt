@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.border
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +28,7 @@ fun NoteColor(
             .size(40.dp)
             .clip(CircleShape)
             .background(Color.Red)
-            .background(Color.Yellow)
+            .padding(4.dp)
             .border(
                 BorderStroke(
                     2.dp,
