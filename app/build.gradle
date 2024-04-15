@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-  compileSdkVersion 33
+  compileSdkVersion 34
   buildToolsVersion "30.0.3"
 
   defaultConfig {
@@ -77,6 +77,8 @@ dependencies {
 
   // Room
   implementation "androidx.room:room-runtime:2.2.6"
+  implementation 'androidx.test:monitor:1.6.1'
+  implementation 'androidx.test.ext:junit-ktx:1.1.5'
   kapt "androidx.room:room-compiler:2.2.6"
 
   // Coroutines
