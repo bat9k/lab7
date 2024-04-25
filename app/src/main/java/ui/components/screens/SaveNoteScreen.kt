@@ -1,4 +1,4 @@
-package ui.components.ColorItem
+package ui.components.screens
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.layout.*

@@ -1,5 +1,4 @@
 package com.topic2.android.notes.viewmodel
-
 import androidx.lifecycle.ViewModel
 import com.topic2.android.notes.data.repository.Repository
 import androidx.lifecycle.LiveData
@@ -7,7 +6,6 @@ import com.topic2.android.notes.domain.model.NoteModel
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-
 /**
  * Модель просмотра, используемая для хранения глобального состояния приложения.
  *
@@ -15,18 +13,14 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel(private val repository: Repository) : ViewModel() {
     val notesNotInTrash: LiveData<List<NoteModel>> by lazy {
-        repository.getAllNotesInTrash()
+        repository.getAllNotesNotInTrash()
     }
     fun onCreateNewNoteClick(){
 
     }
 
-    fun onNoteClick(note: NoteModel) {
-
-    }
-
     fun onNoteCheckedChange(
-        note:NoteModel
+        note: NoteModel
     ) {
         viewModelScope.launch(
             Dispatchers.Default
@@ -34,5 +28,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             repository.insertNote(note)
 
         }
+    }
+    fun onNoteClick(note: NoteModel) {
+
     }
 }
