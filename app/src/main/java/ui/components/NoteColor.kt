@@ -1,40 +1,38 @@
-package ui.components
+package com.topic2.android.notes.ui.components
 
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.background
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.border
-import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.draw.clip
+import com.google.android.material.internal.ViewUtils.RelativePadding
 
 @Composable
 fun NoteColor(
     modifier: Modifier = Modifier,
     color: Color,
     size: Dp,
-    padding: Dp = 0.dp,
     border: Dp
-){
+) {
     Box(
         modifier = modifier
-        .padding(padding)
-        .size(size)
-        .clip(CircleShape)
-        .background(color)
+            .size(size)
+            .clip(CircleShape)
+            .background(color)
             .border(
                 BorderStroke(
-                    2.dp,
+                    border,
                     SolidColor(Color.Black)
-
                 ),
                 CircleShape
             )
@@ -43,6 +41,6 @@ fun NoteColor(
 
 @Preview
 @Composable
-fun NoteColorPreview(){
-    NoteColor(color = Color.Red, size = 40.dp, padding = 4.dp, border = 2.dp)
+fun NoteColorPreview() {
+    NoteColor(color = Color.Red, size = 40.dp, border = 2.dp)
 }

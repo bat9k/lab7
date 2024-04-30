@@ -2,25 +2,26 @@ package com.topic2.android.notes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.compose.setContent
-import com.topic2.android.notes.viewmodel.MainViewModel
-import com.topic2.android.notes.viewmodel.MainViewModelFactory
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.theme.NotesTheme
-import kotlinx.coroutines.launch
-import ui.components.AppDrawer
-import ui.components.Note
 import com.topic2.android.notes.ui.screens.NotesScreen
+import com.topic2.android.notes.ui.screens.SaveNoteScreen
+import com.topic2.android.notes.ui.screens.TrashScreen
+import com.topic2.android.notes.viewmodel.MainViewModel
+import com.topic2.android.notes.viewmodel.MainViewModelFactory
+
 /**
  * Main activity приложения.
  */
 class MainActivity : AppCompatActivity() {
+
   private val viewModel: MainViewModel by viewModels(factoryProducer = {
     MainViewModelFactory(
       this,
@@ -28,12 +29,27 @@ class MainActivity : AppCompatActivity() {
     )
   })
 
+  @ExperimentalMaterialApi
   @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setContent {
-      NotesTheme {NotesScreen(viewModel = viewModel)}
+      NotesTheme {
+        MainActivityScreen(viewModel = viewModel)
+      }
+    }
+  }
+}
+
+@Composable
+@ExperimentalMaterialApi
+private fun MainActivityScreen(viewModel: MainViewModel) {
+  Surface {
+    when (NotesRouter.currentScreen) {
+      is Screen.Notes -> NotesScreen(viewModel)
+      is Screen.SaveNote -> SaveNoteScreen(viewModel)
+      is Screen.Trash -> TrashScreen(viewModel)
     }
   }
 }
